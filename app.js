@@ -6,8 +6,9 @@ const blogRoutes = require("./routes/blogRoutes");
 const app = express();
 
 // connect to mongodb & listen for requests
-const dbURI = "mongodb+srv://harsha:reddy@cluster0.22slh.mongodb.net/Yash";
-//TODO: move to .env variable, and create new db connection
+const dbURI =
+  "mongodb+srv://blogster:bHQnqpqXTYF4oj0Y@blogs.vugsi.mongodb.net/";
+//TODO: move to .env variable
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
