@@ -7,7 +7,7 @@ const app = express();
 
 // connect to mongodb & listen for requests
 const dbURI = "mongodb+srv://harsha:reddy@cluster0.22slh.mongodb.net/Yash";
-//TODO: move to .env variable
+//TODO: move to .env variable, and create new db connection
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
