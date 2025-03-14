@@ -1,23 +1,14 @@
+require("dotenv").config();
+
 const express = require("express");
-const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
+const connectDB = require("./database/db");
 
-// express app
 const app = express();
+const port = process.env.PORT || 4000;
 
-// connect to mongodb & listen for requests
-const dbURI =
-  "mongodb+srv://blogster:bHQnqpqXTYF4oj0Y@blogs.vugsi.mongodb.net/";
-//TODO: move to .env variable
-
-mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(4000))
-  .catch((err) => console.log(err));
-
-// register view engine
-app.set("view engine", "ejs");
-//TODO: migrate to react in separate project/repo
+// connect to mongodb
+connectDB();
 
 // middleware & static files
 app.use(express.static("public"));
@@ -26,6 +17,14 @@ app.use((req, res, next) => {
   res.locals.path = req.path;
   next();
 });
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+// register view engine
+app.set("view engine", "ejs");
+//TODO: migrate to react in separate project/repo
 
 // routes
 app.get("/", (req, res) => {
