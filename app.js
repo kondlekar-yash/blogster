@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
-const blogRoutes = require("./routes/blogRoutes");
 const connectDB = require("./database/db");
+const blogRoutes = require("./routes/blogRoutes");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -11,6 +11,7 @@ const port = process.env.PORT || 4000;
 connectDB();
 
 // middleware & static files
+app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
